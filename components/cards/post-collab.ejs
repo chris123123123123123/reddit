@@ -1,0 +1,73 @@
+<div class="post">
+<div class="post-left">
+    
+    <div class="votes">
+        <i class="fa-sharp fa-regular fa-arrow-up"></i>
+        <p class="p-smaller">3000</p>
+        <i class="fa-regular fa-arrow-down"></i>
+    </div>
+    
+    <div class="post-main-content">
+        <div class="post-main-content-text">
+            <span>
+                <p class="semi-bold"><button class="btn-primary-small">COLLAB</button>  <%= post.title %></p>
+                
+            </span>
+
+            
+            
+            <div class="editor-menu">
+                <button class="edit-menu-btns" id="bold">B</button>
+                <button class="edit-menu-btns" id="italic">I</button>
+                <button class="edit-menu-btns" id="strike">S</button>
+                <button class="edit-menu-btns" id="quote">Q</button>
+                <button class="edit-menu-btns" id="code">C</button>
+            </div>
+            
+
+            <div class="element" id="editor" postID="<%= post.id %>" postBody="<%= post.body %>">  </div>
+
+            
+            
+        </div>
+        
+        <div class="post-info">
+            <div class="post-info-span">
+                
+                
+                <span>
+                    <img src="<%= post.author.avatarImage%>" alt="" class="post-info-img">
+                    <p class="caption-reg"><%= post.author.username %></p>
+                </span>
+            </div>
+
+            <div class="post-info-span">
+                <span>
+                    <i class="fa-regular fa-cloud"></i>
+                    <p class="caption-reg">124 comments</p>
+                </span>
+                
+                <span>
+                    <i class="fa-light fa-eye"></i>
+                    <p class="caption-reg">124 views</p>
+                </span>
+
+                <span>
+                    <p class="caption-reg">2 hours ago</p>
+                </span>
+                
+            </div>
+
+            
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+<script>
+    
+
+</script>

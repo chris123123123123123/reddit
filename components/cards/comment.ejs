@@ -1,0 +1,48 @@
+
+
+<a>
+<div class="comment" commentID="<%= parentComment.id%>">
+    <div class="comment-container">
+    
+        <div class="comment-head">
+            <img src="<%=parentComment.author.avatarImage%>" alt="" class="avatar-24">
+            <a href="/profile/<%=parentComment.author.id%>"><p><%= parentComment.author.username %></p></a>
+            <p class="caption-reg"><%= parentComment.dateCreated %></p>
+        </div>
+
+        <div class="comment-body">
+            <div class="comment-line">
+
+            </div>
+            <div class="comment-pair">
+                <div class="comment-body-content">
+                        <p><%= parentComment.body %></p>
+                    <div class="comment-body-content-details">
+                        <span ><p class="caption-reg spanny"> <i  class="fa-sharp fa-solid fa-arrow-up vote-icon"></i> <%= parentComment.upvotes %> <i class="fa-solid fa-arrow-down vote-icon"></i></p></span>
+                        
+                        
+                        <% if (session.loggedIn) { %>
+                            <span class="caption-reg comment-reply"> reply </span>
+
+                        <% } %> 
+                    </div>
+                </div>
+
+                <% if (parentComment.replies.length > 0) { %>
+                <div class="next-comment">
+                    <% parentComment.replies.forEach( (reply) => { %>
+                      <%- include('comment', { parentComment: reply }) %>
+                    <% }); %>
+                </div>
+                <% } else { %>
+                    <div class="next-comment"></div>
+                    <%  } %>
+            </div>
+            
+        </div>
+        
+
+    </div>
+    
+</div>
+

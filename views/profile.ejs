@@ -1,0 +1,57 @@
+<%- include('top') %>
+<%- include('header', {session}) %>
+<%- include('banner-profile', {user}) %>
+
+<div class="main-content">
+    
+ 
+
+    <div class="posts margin-extra">
+        <div class="posts">
+            <% posts.forEach( post => { %>
+          
+                <%- include('post-main', {post: post}) %>  
+        
+               <% })%>
+        
+        </div>
+    </div>
+</div>
+
+<script>
+    let logIn = document.querySelector('#log-in')
+    let signUp = document.querySelector('#sign-up')
+    let logInModal = document.querySelector('#log-in-modal')
+    let signUpModal = document.querySelector('#sign-up-modal')
+
+    logIn.addEventListener('click', () => {
+        logInModal.showModal()
+
+    })
+
+    signUp.addEventListener('click', () => {
+        signUpModal.showModal()
+
+    })
+    
+    logInModal.addEventListener('click', e => {
+        let loginDimensions = logInModal.getBoundingClientRect()
+        if (e.clientX < loginDimensions.left ||
+            e.clientX > loginDimensions.right ||
+            e.clientY < loginDimensions.top ||
+            e.clientY > loginDimensions.bottom
+        ) { logInModal.close() }       
+    })
+
+    signUpModal.addEventListener('click', e => {
+        let signUpDimensions = signUpModal.getBoundingClientRect()
+        if (e.clientX < signUpDimensions.left ||
+            e.clientX > signUpDimensions.right ||
+            e.clientY < signUpDimensions.top ||
+            e.clientY > signUpDimensions.bottom
+        ) { signUpModal.close() }
+    })
+</script>
+
+<%- include('bottom') %>
+    

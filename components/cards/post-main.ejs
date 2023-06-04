@@ -1,0 +1,73 @@
+
+<div class="post">
+
+    
+
+<div class="post-left">
+    
+    <div class="votes">
+        <i class="fa-solid fa-arrow-up vote-icon"></i>
+        <p class="p-smaller"><%= post.upvotes - post.downvotes %> </p>
+        <i class="fa-solid fa-arrow-down vote-icon"></i>
+    </div>
+    
+    <div class="post-main-content">
+        <div class="post-main-content-text">
+            <a href="/r/<%= post.subreddit.name %>/<%= post.id %>"><p class="semi-bold"> 
+                <% if (post.type == 'collab-post') { %>
+                    <button class="btn-primary-small">COLLAB</button>
+                <% } %>
+                
+                <%= post.title%> </p></a>
+            <p class="p-smaller post-text"> <%= post.body%> </p>
+        </div>
+        
+        <div class="post-info">
+            <div class="post-info-span">
+                <span>
+                    <a href="/r/<%=post.subreddit.name%>"><img src="<%=post.subreddit.avatarImage%>" alt="" class="post-info-img"></a>
+                    <p class="caption-reg"> <%= post.subreddit.name %> </p>
+                </span>
+                
+                <span>
+                    <img src="<%=post.author.avatarImage%>" alt="" class="post-info-img">
+                    <p class="caption-reg"> <%= post.author.username %> </p>
+                </span>
+            </div>
+
+            <div class="post-info-span">
+                <span>
+                    
+                    <p class="caption-reg">124 comments</p>
+                </span>
+                
+                <span>
+                    
+                    <p class="caption-reg">124 views</p>
+                </span>
+
+                <span>
+                    <p class="caption-reg">2 hours ago</p>
+                </span>
+                
+            </div>
+
+            
+
+        </div>
+    </div>
+</div>
+
+<% if (post.type == 'text-post') { %>
+    <div class="post-image">
+        <img src="<%=post.image%>" alt="" class="post-img-fr">
+    </div>
+    
+<% } %>
+
+
+</div>
+
+
+
+

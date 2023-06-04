@@ -1,0 +1,278 @@
+<%- include('top') %>
+<%- include('header', {session}) %>
+<%- include('banner-subreddit') %>
+<div class="main-content">
+    
+    <script> 
+        let session = JSON.parse('<%- JSON.stringify(session) %>')
+        </script>
+
+    <div class="posts margin-extra">
+        
+        <% if (post.type == 'collab-post') { %>
+        <%- include('post-collab') %>
+        <% } %>
+
+        <% if (post.type == 'text-post') { %>
+            <%- include('post-subreddit') %>
+            <% } %>
+        
+        
+            
+        <%- include('post-reply') %>
+
+        
+
+        
+        <% postComments.forEach( (parentComment) => { %>
+            
+            <div class="comment-main-container">
+            <%- include('parent-comment', { parentComment, session }) %>
+            </div>
+        <% }) %>
+        
+    </div>
+</div>
+
+
+<script defer type="module" src="/js/bundle.js"></script>
+<script>
+    let logIn = document.querySelector('#log-in')
+    let signUp = document.querySelector('#sign-up')
+    let logInModal = document.querySelector('#log-in-modal')
+    let signUpModal = document.querySelector('#sign-up-modal')
+
+    logIn.addEventListener('click', () => {
+        logInModal.showModal()
+
+    })
+
+    signUp.addEventListener('click', () => {
+        signUpModal.showModal()
+
+    })
+    
+    logInModal.addEventListener('click', e => {
+        let loginDimensions = logInModal.getBoundingClientRect()
+        if (e.clientX < loginDimensions.left ||
+            e.clientX > loginDimensions.right ||
+            e.clientY < loginDimensions.top ||
+            e.clientY > loginDimensions.bottom
+        ) { logInModal.close() }       
+    })
+
+    signUpModal.addEventListener('click', e => {
+        let signUpDimensions = signUpModal.getBoundingClientRect()
+        if (e.clientX < signUpDimensions.left ||
+            e.clientX > signUpDimensions.right ||
+            e.clientY < signUpDimensions.top ||
+            e.clientY > signUpDimensions.bottom
+        ) { signUpModal.close() }
+    })
+</script>
+
+<%- include('bottom') %>
+
+
+
+<script defer>
+
+
+function findParentWithAttribute(element, attributeName) {
+    let parent = element.parentNode;
+    while (parent && !parent.hasAttribute('commentID')) {
+        parent = parent.parentNode
+    }
+
+    return parent;
+}
+
+
+    let postReplyForm = document.getElementById('post-reply-form')
+    postReplyForm.addEventListener('submit', (event) => {
+        event.preventDefault()
+        
+        let formData = new FormData(postReplyForm)
+        let data = new URLSearchParams(formData)
+        let body = formData.get('post-reply')
+
+        let commentData = {
+                    postID: `<%= post.id %>`,
+                    parentCommentID: null,                    
+                    authorID: `<%= session.userID %>`,
+                    reply: body                  
+                }
+
+        
+
+        fetch('/r/:subreddit/:postID', {
+                    method: 'POST',
+                    body: JSON.stringify(commentData),
+                    headers: {
+                    'Content-Type': 'application/json'
+                }
+                })
+
+        location.reload()
+
+        
+
+
+
+        
+    })
+
+
+    let replies = document.querySelectorAll('.comment-reply');
+    replies.forEach( reply => {
+        reply.addEventListener( 'click', (event) => {
+            let nextComment = event.target.parentElement.parentElement.nextElementSibling        
+            let template = `<%- include('comment-reply') %>`
+            ;       
+            nextComment.insertAdjacentHTML('afterbegin', template)
+            
+            let thisCancelBtn = document.getElementById('reply-cancel-button')
+            let thisSubmitBtn = document.getElementById('reply-submit-button')
+
+            
+            let newCommentBody = nextComment.firstChild.firstChild;
+                    
+            
+            thisCancelBtn.addEventListener('click', () => {
+            nextComment.removeChild(nextComment.firstChild)
+            })
+
+            let replyForm = document.getElementById('reply-form')
+            
+
+            replyForm.addEventListener('submit', (event) => {
+                
+                event.preventDefault()
+                let replyParentCommentID = findParentWithAttribute(event.target, 'commentID').getAttribute('commentID')
+                
+                
+                
+
+
+                let formData = new FormData(replyForm)
+                let data = new URLSearchParams(formData)
+
+                let body = formData.get('reply')
+
+                let commentData = {
+                    postID: `<%= post.id %> `,
+                    parentCommentID: replyParentCommentID,                    
+                    authorID: `<%= session.userID %>`,
+                    reply: body                  
+                }
+
+                
+
+
+                
+
+                fetch('/r/:subreddit/:postID', {
+                    method: 'POST',
+                    body: JSON.stringify(commentData),
+                    headers: {
+                    'Content-Type': 'application/json'
+                }
+                })
+
+                
+
+            let newCommentHTML = `<div class="comment">
+    <div class="comment-container">
+    
+        <div class="comment-head">
+            <img src="https://images.unsplash.com/photo-1541320779116-ec4a3d4692bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="" class="avatar-24">
+            <p> <%=session.username%></p>
+            <p class="caption-reg"></p>
+        </div>
+
+        <div class="comment-body">
+            <div class="comment-line">
+
+            </div>
+            <div class="comment-pair">
+                <div class="comment-body-content">
+                        <p> ${body} </p>
+                    <div class="comment-body-content-details">
+                        <span><p class="caption-reg">up 2312 down</p></span>
+                        <span class="caption-reg">icon reply</span>
+                    </div>
+                </div>
+
+                
+                
+               
+            </div>
+            
+        </div>
+        
+
+    </div>
+    
+</div>
+`
+let newDiv = document.createElement('div')
+            newDiv.innerHTML = newCommentHTML
+            nextComment.removeChild(nextComment.firstChild)
+            nextComment.prepend(newDiv)
+
+            
+            
+            
+            
+            })
+
+
+            
+
+           
+
+        })
+    })
+    
+    let commentLines = document.querySelectorAll('.comment-line')
+    
+    commentLines.forEach( comment => {
+        comment.addEventListener( 'click', (event) => {
+            
+            let currentElement = event.target
+            // let collapseIcon = event.target
+            // collapseIcon = collapseIcon.previousElementSibling
+            
+            
+           
+
+            let commentPair = currentElement.nextElementSibling
+            let commentPairChildren = Array.from(commentPair.children)
+            let nextComment = commentPairChildren.find( div => div.classList.contains('next-comment'))
+            nextComment.classList.toggle('hidden')
+            event.target.classList.toggle('comment-line-active')
+            // collapseIcon.classList.toggle('hidden')
+            
+
+            
+            
+        })
+        
+    })
+
+
+    
+
+    
+     
+
+    
+
+    
+
+
+
+
+
+</script>
+    

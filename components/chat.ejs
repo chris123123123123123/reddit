@@ -1,0 +1,22 @@
+
+    <div class="chat-time-slot">
+        <p class="caption-reg"><%= message.timestamp %></p>
+        
+        <% if (message.senderID == user.id) { %>
+            <div class="chat-bubbles">
+                <div class="chat-bubble">
+                    <p><%= message.content %></p>
+                </div>        
+            </div>
+        <% }else { %>
+            <div class="chat-bubbles-reverse">
+                <div class="chat-bubble">
+                    <p><%= message.content %></p>
+                </div>        
+            </div>
+        <% } %>
+
+
+        
+        
+    </div>

@@ -1,0 +1,7 @@
+<% if (session.loggedIn) { %>
+    <%- include('header-logged-in') %>
+    <% } else { %>
+    <%- include('header-signed-out') %>
+    <%- include('sign-up-dialog') %>
+    <%- include('login-dialog') %>
+    <% } %> 

@@ -1,0 +1,102 @@
+[
+    {
+      "id": 0,
+      "name": "AskReddit",
+      "description": "A subreddit for open-ended discussions and thought-provoking questions.",
+      "creator": 3,
+      "dateCreated": "2022-11-24T12:28:17.116Z",
+      "avatarImage": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/427.jpg",
+      "bannerImage": "https://loremflickr.com/640/480?lock=3728984101617664"
+    },
+    {
+      "id": 1,
+      "name": "pics",
+      "description": "A subreddit for sharing and discussing beautiful or interesting pictures.",
+      "creator": 21,
+      "dateCreated": "2023-02-07T22:14:50.904Z",
+      "avatarImage": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/147.jpg",
+      "bannerImage": "https://picsum.photos/seed/yWUWzV/640/480"
+    },
+    {
+      "id": 2,
+      "name": "todayilearned",
+      "description": "A subreddit for sharing interesting facts and tidbits of knowledge.",
+      "creator": 49,
+      "dateCreated": "2022-09-06T11:37:31.035Z",
+      "avatarImage": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/191.jpg",
+      "bannerImage": "https://picsum.photos/seed/0q3DE/640/480"
+    },
+    {
+      "id": 3,
+      "name": "worldnews",
+      "description": "A subreddit for news and discussions about global events and politics.",
+      "creator": 29,
+      "dateCreated": "2023-02-22T04:07:52.660Z",
+      "avatarImage": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/970.jpg",
+      "bannerImage": "https://picsum.photos/seed/p6cSwlIZ/640/480"
+    },
+    {
+      "id": 4,
+      "name": "gaming",
+      "description": "A subreddit for all things related to video games.",
+      "creator": 16,
+      "dateCreated": "2022-09-13T17:23:50.189Z",
+      "avatarImage": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/509.jpg",
+      "bannerImage": "https://loremflickr.com/640/480?lock=536314485145600"
+    },
+    {
+      "id": 5,
+      "name": "funny",
+      "description": "A subreddit for sharing and discussing humorous content.",
+      "creator": 16,
+      "dateCreated": "2023-04-12T00:29:03.959Z",
+      "avatarImage": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/986.jpg",
+      "bannerImage": "https://loremflickr.com/640/480?lock=4970961252122624"
+    },
+    {
+      "id": 6,
+      "name": "movies",
+      "description": "A subreddit for discussing movies, film news, and reviews.",
+      "creator": 5,
+      "dateCreated": "2022-09-18T15:06:36.032Z",
+      "avatarImage": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/746.jpg",
+      "bannerImage": "https://loremflickr.com/640/480?lock=4322871962763264"
+    },
+    {
+      "id": 7,
+      "name": "aww",
+      "description": "A subreddit for sharing adorable and cute animal pictures and videos.",
+      "creator": 44,
+      "dateCreated": "2022-12-26T03:05:23.880Z",
+      "avatarImage": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/628.jpg",
+      "bannerImage": "https://loremflickr.com/640/480?lock=7171335344095232"
+    },
+    {
+      "id": 8,
+      "name": "Maths",
+      "description": "A subreddit for discussing scientific research, news, and discoveries.",
+      "creator": 18,
+      "dateCreated": "2023-03-31T21:15:42.945Z",
+      "avatarImage": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1140.jpg",
+      "bannerImage": "https://loremflickr.com/640/480?lock=1498398289035264"
+    },
+    {
+      "id": 9,
+      "name": "Programming",
+      "description": "A subreddit for discussing scientific research, news, and discoveries.",
+      "creator": 41,
+      "dateCreated": "2022-12-27T04:19:52.140Z",
+      "avatarImage": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/583.jpg",
+      "bannerImage": "https://picsum.photos/seed/6N4zVsIwp/640/480"
+    },
+    {
+     "id": 10,
+     "name": "science",
+     "description": "A subreddit for discussing scientific research, news, and discoveries.",
+     "creator": 41,
+     "dateCreated": "2022-12-27T04:19:52.140Z",
+     "avatarImage": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/583.jpg",
+     "bannerImage": "https://picsum.photos/seed/6N4zVsIwp/640/480"
+      }
+  ]
+  

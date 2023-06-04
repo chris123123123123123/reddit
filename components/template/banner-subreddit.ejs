@@ -1,0 +1,34 @@
+<div class="banner">
+    <img src="<%= subreddit.bannerImage%>" alt="" class="banner-img">
+    <div class="banner-content">
+        
+            <div class="banner-content-left">
+            
+                <a href="/r/<%= subreddit.name %>">
+                <div class="banner-name">
+                    <img class='avatar-32' src="<%= subreddit.avatarImage%>" alt="">
+                    <p><%=subreddit.name%></p>
+                </div>
+                </a>
+
+                <div class="banner-users">
+                    <span>
+                        <p class="caption-reg bold">324k</p>
+                        <p class="caption-reg">users</p>
+                    </span>
+
+                    <span>
+                        <p class="caption-reg bold">324k</p>
+                        <p class="caption-reg">users online</p>
+                    </span>
+                </div>  
+            </div>   
+            
+            <%- include('filter-home') %>
+
+            <div class="banner-buttons">
+                <a href="/r/<%=subreddit.name%>/make-post"><button class="btn-primary">+ Make a Post</button></a>
+                <button class="btn-secondary">Join</button>
+            </div>
+    </div>
+</div>

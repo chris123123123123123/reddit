@@ -1,0 +1,139 @@
+<%- include('top') %>
+<%- include('header', {session}) %>
+<%- include('banner-profile', {user}) %>
+
+
+    
+    
+
+    <div class="messages-structure">
+    <div class="chat-container-container">
+    <div class="chat">
+    
+        <div id="chat-container" class="chat-container margin-extra">
+            <% conversation.forEach( message => { %>
+            <%- include('chat', {message, user}) %> 
+            <% }) %>
+             
+        </div>
+        
+    
+    
+
+<textarea id="chat-textarea"></textarea> 
+</div>
+
+    
+
+    
+</div>
+</div>
+
+<script>
+    const chatContainer = document.getElementById('chat-container');
+    let lastChild = chatContainer.lastElementChild
+    lastChild.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+    
+
+    let textarea = document.querySelector('#chat-textarea')
+    textarea.addEventListener('keypress', (event) => {
+        if (event.key == "Enter") {
+            event.preventDefault()
+
+            let data = { 
+                content: textarea.value,
+                userID: `<%= userID %>`
+            }
+            
+            fetch('/messages/:userID', {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                    'Content-Type': 'application/json'
+                }
+                })
+            .then(response => response.json())
+            .then( data => {
+                let { latestMessage } = data
+                const chatTimeSlot = document.createElement('div');
+                chatTimeSlot.classList.add('chat-time-slot');
+                chatTimeSlot.classList.add('fade-in');
+
+                const timestamp = document.createElement('p');
+                timestamp.classList.add('caption-reg');
+                timestamp.textContent = latestMessage.timestamp;
+                chatTimeSlot.appendChild(timestamp);
+
+                const chatBubbles = document.createElement('div');
+                chatBubbles.classList.add('chat-bubbles');
+
+                const chatBubble = document.createElement('div');
+                chatBubble.classList.add('chat-bubble');
+
+                const messageContent = document.createElement('p');
+                messageContent.textContent = latestMessage.content;
+                chatBubble.appendChild(messageContent);
+
+                chatBubbles.appendChild(chatBubble);
+                chatTimeSlot.appendChild(chatBubbles);
+
+                
+                
+                chatContainer.appendChild(chatTimeSlot);
+                lastChild = chatContainer.lastElementChild
+                lastChild.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+                
+                setTimeout(() => {
+                  chatTimeSlot.classList.add('active');
+                }, 10);
+
+                
+                setTimeout(() => {
+                  chatTimeSlot.classList.remove('fade-in');
+                }, 500);
+
+                            })
+
+            textarea.value = ''
+        }
+    })
+</script>
+
+<script>
+    let logIn = document.querySelector('#log-in')
+    let signUp = document.querySelector('#sign-up')
+    let logInModal = document.querySelector('#log-in-modal')
+    let signUpModal = document.querySelector('#sign-up-modal')
+
+    logIn.addEventListener('click', () => {
+        logInModal.showModal()
+
+    })
+
+    signUp.addEventListener('click', () => {
+        signUpModal.showModal()
+
+    })
+    
+    logInModal.addEventListener('click', e => {
+        let loginDimensions = logInModal.getBoundingClientRect()
+        if (e.clientX < loginDimensions.left ||
+            e.clientX > loginDimensions.right ||
+            e.clientY < loginDimensions.top ||
+            e.clientY > loginDimensions.bottom
+        ) { logInModal.close() }       
+    })
+
+    signUpModal.addEventListener('click', e => {
+        let signUpDimensions = signUpModal.getBoundingClientRect()
+        if (e.clientX < signUpDimensions.left ||
+            e.clientX > signUpDimensions.right ||
+            e.clientY < signUpDimensions.top ||
+            e.clientY > signUpDimensions.bottom
+        ) { signUpModal.close() }
+    })
+</script>
+
+
+<%- include('bottom') %>
+    

@@ -1,0 +1,107 @@
+<%- include('top') %>
+<%- include('header', {session}) %>
+<%- include('banner-subreddit') %>
+<div class="main-content">
+    
+
+
+    <div class="posts margin-extra">
+        <%- include('make-post') %>
+        
+    </div>
+
+    
+</div>
+
+<script>
+    let logIn = document.querySelector('#log-in')
+    let signUp = document.querySelector('#sign-up')
+    let logInModal = document.querySelector('#log-in-modal')
+    let signUpModal = document.querySelector('#sign-up-modal')
+
+    logIn.addEventListener('click', () => {
+        logInModal.showModal()
+
+    })
+
+    signUp.addEventListener('click', () => {
+        signUpModal.showModal()
+
+    })
+    
+    logInModal.addEventListener('click', e => {
+        let loginDimensions = logInModal.getBoundingClientRect()
+        if (e.clientX < loginDimensions.left ||
+            e.clientX > loginDimensions.right ||
+            e.clientY < loginDimensions.top ||
+            e.clientY > loginDimensions.bottom
+        ) { logInModal.close() }       
+    })
+
+    signUpModal.addEventListener('click', e => {
+        let signUpDimensions = signUpModal.getBoundingClientRect()
+        if (e.clientX < signUpDimensions.left ||
+            e.clientX > signUpDimensions.right ||
+            e.clientY < signUpDimensions.top ||
+            e.clientY > signUpDimensions.bottom
+        ) { signUpModal.close() }
+    })
+</script>
+
+<%- include('bottom') %>
+
+<script>
+let postTitle = document.getElementById('make-post-title')
+let postBody = document.getElementById('make-post-body')
+let submitButton = document.getElementById('submit-post')
+
+
+
+
+submitButton.addEventListener('click', () => {
+
+    let postData = { 
+    'postTitle': postTitle.value,
+    'postBody': postBody.value,
+    'subredditID': `<%= subreddit.id %>`,
+    'postType': postType
+    
+    
+}
+
+    fetch('/r/:subreddit/make-post', {
+        method: 'POST',
+        body: JSON.stringify(postData),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    
+
+
+})
+
+
+let postType
+let postTypes = document.querySelectorAll('.post-type')
+postTypes.forEach( (type) => {
+    type.addEventListener( 'click', (e) => {
+        
+        //remove style from all btns
+        postTypes.forEach( (type2) => {
+            type2.classList.remove('btn-primary-pressed')
+        })
+
+        postType = e.target.id  
+        type.classList.toggle('btn-primary-pressed')
+
+    })
+})
+
+
+
+
+
+
+</script>
+    

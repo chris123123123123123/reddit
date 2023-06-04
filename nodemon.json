@@ -1,0 +1,7 @@
+{
+    "ignore": ["node_modules/*", ".git/*"],
+    "execMap": {
+      "js": "node --inspect"
+    }
+  }
+  
